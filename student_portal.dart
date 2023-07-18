@@ -1,6 +1,10 @@
 import 'dart:async';
 import 'dart:io';
 
+void main() {
+  enterProgram();
+}
+
 List<Map> studentsData = [
   {
     "roll": 1,
@@ -43,12 +47,15 @@ List<Map> studentsData = [
     "password": "123456"
   },
 ];
+
 List<Map> teachersData = [
   {
     "roll": 1,
     "name": "Bilal Rehman",
     "subjects": ["flutter", "dart", "python", "djanjo", "fLask"],
-    "course": "flutter"
+    "course": "flutter",
+    "email": "bilal@flutter.com",
+    "password": "flutter",
   },
   {
     "roll": 2,
@@ -62,13 +69,11 @@ List<Map> teachersData = [
       "express",
       "mongodb"
     ],
-    "course": "regular"
+    "course": "regular",
+    "email": "ishaq@js.com",
+    "password": "javascript"
   },
 ];
-
-void main() {
-  enterProgram();
-}
 
 admin() {}
 adminLogin() {
@@ -177,4 +182,32 @@ teacherLogin() {
       print('Please enter your email and password again:');
     }
   }
+}
+
+studentCrudOps() {
+  createStudent({
+    required String name,
+    required String email,
+    required String password,
+    required String course,
+  }) {
+    Map<String, dynamic> newStudent = {
+      "roll": studentsData.length,
+      "name": name,
+      "course": course,
+      "email": email,
+      "password": password
+    };
+    studentsData.add(newStudent);
+    return newStudent;
+  }
+
+  Map? getStudentbyId({required num id}) {
+    for (var student in studentsData) {
+      student["roll"] == id ? student : null;
+    }
+  }
+
+  updateStudent() {}
+  deleteStudetn() {}
 }
