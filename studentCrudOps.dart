@@ -5,7 +5,15 @@ createStudent(
     required String email,
     required String password,
     required String course}) {
-  Map newStudent = {};
+  Map newstudent = {
+    "id": studentsData.length,
+    "name": name,
+    "email": email,
+    "password": password,
+    "course": course
+  };
+  studentsData.add(newstudent);
+  return studentsData;
 }
 
 Map<dynamic, dynamic>? getStudentById(int id) {
@@ -14,7 +22,7 @@ Map<dynamic, dynamic>? getStudentById(int id) {
       return student;
     }
   }
-  return null; // Return null if the student with the given ID is not found.
+  return null;
 }
 
 void updateStudent(int id, Map<String, dynamic> updatedData) {
