@@ -1,5 +1,3 @@
-// data;
-
 import 'dart:io';
 
 List<Map> studentsData = [
@@ -151,25 +149,25 @@ List createStudent({
     "course": course,
   };
   studentsData.add(newStudent);
-  print(studentsData);
+  print(getStudentById(studentsData.length, studentsData));
+  // print(studentsData);
   return studentsData;
 }
 
-Map<String, dynamic>? getStudentById(int id, List studentsData) {
+Map<dynamic, dynamic>? getStudentById(int id, List studentsData) {
   for (var student in studentsData) {
-    if (student["roll"] == id) {
+    if (student["id"] == id) {
       student.forEach((key, value) {
         print('$key: $value');
       });
-      return Map<String, dynamic>.from(
-          student); // Convert the map to the correct type
+      return student;
     }
   }
   return null;
 }
 
 void updateStudentData(int id) {
-  Map<String, dynamic>? foundData = getStudentById(id, studentsData);
+  Map<dynamic, dynamic>? foundData = getStudentById(id, studentsData);
   if (foundData == null) {
     print("Student not found!");
     return;
@@ -303,7 +301,7 @@ teacherFunction() {
       print("Student added successfully!");
     } else if (input == 'get') {
       int id = int.parse(stdin.readLineSync()!);
-      Map<String, dynamic>? foundData = getStudentById(id, studentsData);
+      Map<dynamic, dynamic>? foundData = getStudentById(id, studentsData);
 
       foundData?.forEach((key, value) {
         print('$key: $value');
